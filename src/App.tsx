@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <header>
+        <h1 className="p-8 text-3xl font-bold underline">Grabbie!</h1>
+      </header>
+      <main>
+        <section className="flex gap-8 m-8 mt-0">
+          <article className="border min-w-96 p-4 flex flex-col gap-4">
+            <h2 className="text-2xl font-semibold">Scheduled</h2>
+            <div className="flex flex-col gap-2">
+              <div className="p-3 bg-gray-100">
+                <p>할 일을 만들었다</p>
+              </div>
+              <div className="p-3 bg-gray-100">
+                <p>할 일을 만들었다</p>
+              </div>
+            </div>
+            <input type="text" className="border-b px-3 py-2 outline-none" />
+          </article>
+          <article className="border min-w-96 p-4 flex flex-col gap-4">
+            <h2 className="text-2xl font-semibold">In Progress</h2>
+            <div className="flex flex-col gap-2">
+              <div className="p-3 bg-gray-100">
+                <p>할 일을 만들었다</p>
+              </div>
+              <div className="p-3 bg-gray-100">
+                <p>할 일을 만들었다</p>
+              </div>
+            </div>
+          </article>
+          <article className="border min-w-96 p-4 flex flex-col gap-4">
+            <h2 className="text-2xl font-semibold">Hold</h2>
+            <div className="flex flex-col gap-2">
+              <div className="p-3 bg-gray-100">
+                <p>할 일을 만들었다</p>
+              </div>
+              <div className="p-3 bg-gray-100">
+                <p>할 일을 만들었다</p>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

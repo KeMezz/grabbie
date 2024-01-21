@@ -8,7 +8,7 @@ interface ChildTaskProps {
 
 const ChildTask: React.FC<ChildTaskProps> = ({ text }) => {
   return (
-    <div className="p-3 bg-gray-100">
+    <div className="p-3 rounded-lg bg-white shadow-sm">
       <p>{text}</p>
     </div>
   );

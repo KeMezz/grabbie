@@ -1,4 +1,5 @@
 import React from "react";
+import dayjs from "dayjs";
 
 interface ChildTaskProps {
   id: number;
@@ -11,7 +12,7 @@ const ChildTask: React.FC<ChildTaskProps> = ({ id, text }) => {
     <div className="p-3 rounded-lg bg-white shadow-sm flex flex-col gap-3">
       <p>{text}</p>
       <span className="text-xs text-gray-400 ml-auto">
-        {new Date(id).toLocaleDateString()} {new Date(id).toLocaleTimeString()}
+        {dayjs(id).fromNow()}
       </span>
     </div>
   );

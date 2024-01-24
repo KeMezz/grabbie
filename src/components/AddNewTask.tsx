@@ -1,5 +1,6 @@
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
+import MotherSelector from "./MotherSelector";
 
 const AddNewTask: React.FC = () => {
   return (
@@ -33,6 +34,7 @@ const AddNewTask: React.FC = () => {
             어떤 할 일을 만들고 싶으신가요?
           </Dialog.Description>
           <form>
+            <MotherSelector />
             <textarea
               className="border rounded-lg w-full p-4 outline-zinc-700"
               name="text"

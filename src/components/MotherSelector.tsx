@@ -6,18 +6,18 @@ const MotherSelector: React.FC = () => {
   return (
     <Select.Root>
       <Select.Trigger
-        className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none"
-        aria-label="Food"
+        className="inline-flex items-center justify-between rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white text-zinc-700 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-zinc-900 outline-none mb-4 w-full"
+        aria-label="Sections"
       >
-        <Select.Value placeholder="Select a fruit…" />
-        <Select.Icon className="text-violet11">
+        <Select.Value placeholder="어느 섹션에 추가할까요?" />
+        <Select.Icon className="text-zinc-700">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-6"
+            className="w-5 h-5"
           >
             <path
               strokeLinecap="round"
@@ -29,14 +29,14 @@ const MotherSelector: React.FC = () => {
       </Select.Trigger>
       <Select.Portal>
         <Select.Content className="overflow-hidden bg-white rounded-md shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]">
-          <Select.ScrollUpButton className="flex items-center justify-center h-[25px] bg-white text-violet11 cursor-default">
+          <Select.ScrollUpButton className="flex items-center justify-center h-[25px] bg-white text-zinc-700 cursor-default">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-5 h-5"
             >
               <path
                 strokeLinecap="round"
@@ -46,52 +46,19 @@ const MotherSelector: React.FC = () => {
             </svg>
           </Select.ScrollUpButton>
           <Select.Viewport className="p-[5px]">
-            <Select.Group>
-              <Select.Label className="px-[25px] text-xs leading-[25px] text-mauve11">
-                Fruits
-              </Select.Label>
-              <SelectItem value="apple">Apple</SelectItem>
-              <SelectItem value="banana">Banana</SelectItem>
-              <SelectItem value="blueberry">Blueberry</SelectItem>
-              <SelectItem value="grapes">Grapes</SelectItem>
-              <SelectItem value="pineapple">Pineapple</SelectItem>
-            </Select.Group>
-
-            <Select.Separator className="h-[1px] bg-violet6 m-[5px]" />
-
-            <Select.Group>
-              <Select.Label className="px-[25px] text-xs leading-[25px] text-mauve11">
-                Vegetables
-              </Select.Label>
-              <SelectItem value="aubergine">Aubergine</SelectItem>
-              <SelectItem value="broccoli">Broccoli</SelectItem>
-              <SelectItem value="carrot" disabled>
-                Carrot
-              </SelectItem>
-              <SelectItem value="courgette">Courgette</SelectItem>
-              <SelectItem value="leek">Leek</SelectItem>
-            </Select.Group>
-
-            <Select.Separator className="h-[1px] bg-violet6 m-[5px]" />
-
-            <Select.Group>
-              <Select.Label className="px-[25px] text-xs leading-[25px] text-mauve11">
-                Meat
-              </Select.Label>
-              <SelectItem value="beef">Beef</SelectItem>
-              <SelectItem value="chicken">Chicken</SelectItem>
-              <SelectItem value="lamb">Lamb</SelectItem>
-              <SelectItem value="pork">Pork</SelectItem>
-            </Select.Group>
+            <SelectItem value="scheduled">Scheduled</SelectItem>
+            <SelectItem value="doing">Doing</SelectItem>
+            <SelectItem value="done">Done</SelectItem>
+            <SelectItem value="hold">Hold</SelectItem>
           </Select.Viewport>
-          <Select.ScrollDownButton className="flex items-center justify-center h-[25px] bg-white text-violet11 cursor-default">
+          <Select.ScrollDownButton className="flex items-center justify-center h-[25px] bg-white text-zinc-700 cursor-default">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-5 h-5"
             >
               <path
                 strokeLinecap="round"

@@ -2,16 +2,16 @@ import * as Select from "@radix-ui/react-select";
 import React from "react";
 import SelectItem from "./SelectItem";
 import { Control, Controller } from "react-hook-form";
-import { AddNewTaskFormData } from "../types/add-new-task.type";
+import { CreateTodoForm } from "../types/form.type";
 
 interface MotherSelectorProps {
-  control: Control<AddNewTaskFormData>;
+  control: Control<CreateTodoForm>;
 }
 
 const MotherSelector: React.FC<MotherSelectorProps> = ({ control }) => {
   return (
     <Controller
-      name="section"
+      name="sectionId"
       control={control}
       rules={{ required: true }}
       render={({ field: { onChange } }) => (
@@ -57,10 +57,10 @@ const MotherSelector: React.FC<MotherSelectorProps> = ({ control }) => {
                 </svg>
               </Select.ScrollUpButton>
               <Select.Viewport className="p-[5px]">
-                <SelectItem value="scheduled">Scheduled</SelectItem>
-                <SelectItem value="doing">Doing</SelectItem>
-                <SelectItem value="done">Done</SelectItem>
-                <SelectItem value="hold">Hold</SelectItem>
+                <SelectItem value="1">Scheduled</SelectItem>
+                <SelectItem value="2">Doing</SelectItem>
+                <SelectItem value="3">Done</SelectItem>
+                <SelectItem value="4">Hold</SelectItem>
               </Select.Viewport>
               <Select.ScrollDownButton className="flex items-center justify-center h-[25px] bg-white text-zinc-700 cursor-default">
                 <svg

@@ -2,11 +2,11 @@ import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import MotherSelector from "./MotherSelector";
 import { useForm } from "react-hook-form";
-import { AddNewTaskFormData } from "../types/add-new-task.type";
+import { CreateTodoForm } from "../types/form.type";
 
 const AddNewTask: React.FC = () => {
-  const { register, handleSubmit, control } = useForm<AddNewTaskFormData>();
-  const onSubmit = (formData: AddNewTaskFormData) => {
+  const { register, handleSubmit, control } = useForm<CreateTodoForm>();
+  const onSubmit = (formData: CreateTodoForm) => {
     console.log(formData);
     console.log("submiited");
   };

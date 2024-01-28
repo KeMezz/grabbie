@@ -1,4 +1,4 @@
 export interface CreateTodoForm {
-  sectionId: string;
+  section: string;
   text: string;
 }

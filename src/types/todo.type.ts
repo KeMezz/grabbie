@@ -1,6 +1,5 @@
 export interface Todo {
   id: number;
-  sectionId: string;
   text: string;
   isDone: boolean;
   description: string;
@@ -15,4 +14,8 @@ export interface Section {
   description: string;
   createdAt: number;
   updatedAt: number;
+}
+
+export interface Todos {
+  [key: string]: Todo[];
 }

@@ -1,11 +1,15 @@
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import MotherTask from "./components/MotherTask";
 import { useRecoilValue } from "recoil";
 import { todosState } from "./atoms/todos";
 
 function App() {
   const todos = useRecoilValue(todosState);
+  const onDragEnd = (result: DropResult) => {
+    console.log(result);
+  };
   return (
-    <>
+    <DragDropContext onDragEnd={onDragEnd}>
       <header className="flex items-center px-9 gap-5 h-24">
         <h1 className="text-4xl font-bold underline">Grabbie!</h1>
       </header>
@@ -20,7 +24,7 @@ function App() {
           ))}
         </section>
       </main>
-    </>
+    </DragDropContext>
   );
 }
 

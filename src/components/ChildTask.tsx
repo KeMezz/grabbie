@@ -8,7 +8,7 @@ interface ChildTaskProps {
   createdAt: number;
 }
 
-const ChildTask: React.FC<ChildTaskProps> = ({ createdAt, text }) => {
+const ChildTask: React.FC<ChildTaskProps> = ({ text, createdAt }) => {
   return (
     <div className="p-3 rounded-lg bg-white shadow-sm flex flex-col gap-3">
       <p>{text}</p>

@@ -1,17 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import MotherSelector from "./MotherSelector";
 import { useForm } from "react-hook-form";
 import { CreateTodoForm } from "../types/form.type";
+import { Todo } from "../types/todo.type";
+import { useSetRecoilState } from "recoil";
+import { todosState } from "../atoms/todos";
 
-const AddNewTask: React.FC = () => {
-  const { register, handleSubmit, control } = useForm<CreateTodoForm>();
-  const onSubmit = (formData: CreateTodoForm) => {
-    console.log(formData);
-    console.log("submiited");
+interface AddNewTodoProps {
+  defaultSection: string;
+}
+
+const AddNewTodo: React.FC<AddNewTodoProps> = ({ defaultSection }) => {
+  const { register, handleSubmit, control, resetField } =
+    useForm<CreateTodoForm>({
+      defaultValues: {
+        section: defaultSection,
+        text: "",
+      },
+    });
+  const [open, setOpen] = useState(false);
+  const setTodos = useSetRecoilState(todosState);
+  const onSubmit = ({ section, text }: CreateTodoForm) => {
+    const newTodo: Todo = {
+      id: Date.now(),
+      text,
+      isDone: false,
+      description: "",
+      due: "",
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+    };
+    setTodos((prevTodos) => ({
+      ...prevTodos,
+      [section]: [...prevTodos[section], newTodo],
+    }));
+    resetField("text");
+    setOpen(false);
   };
   return (
-    <Dialog.Root>
+    <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
         <button
           className="flex items-center gap-2 text-zinc-400 hover:text-zinc-900"
@@ -44,17 +72,18 @@ const AddNewTask: React.FC = () => {
             어떤 할 일을 만들고 싶으신가요?
           </Dialog.Description>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <MotherSelector control={control} />
+            <MotherSelector control={control} defaultSection={defaultSection} />
             <textarea
               rows={5}
               className="border rounded-lg w-full p-4 outline-zinc-700"
               placeholder="할 일을 입력해주세요."
+              autoFocus
               {...register("text", { required: true })}
             />
             <div className="mt-[25px] flex justify-end">
               <button
-                className="bg-green4 text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
                 type="submit"
+                className="bg-green4 text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
               >
                 추가하기
               </button>
@@ -88,4 +117,4 @@ const AddNewTask: React.FC = () => {
   );
 };
 
-export default AddNewTask;
+export default AddNewTodo;

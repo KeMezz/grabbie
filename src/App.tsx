@@ -1,7 +1,9 @@
 import MotherTask from "./components/MotherTask";
-import todos from "./todos";
+import { useRecoilValue } from "recoil";
+import { todosState } from "./atoms/todos";
 
 function App() {
+  const todos = useRecoilValue(todosState);
   return (
     <>
       <header className="flex items-center px-9 gap-5 h-24">

@@ -20,7 +20,7 @@ const ChildTask: React.FC<ChildTaskProps> = ({
     <Draggable draggableId={id + ""} index={index}>
       {(magic, snapshot) => (
         <div
-          className="p-3 rounded-lg bg-white shadow-sm flex flex-col gap-3"
+          className="p-3 rounded-lg bg-white shadow-sm flex flex-col mb-3 space-y-3"
           ref={magic.innerRef}
           {...magic.dragHandleProps}
           {...magic.draggableProps}

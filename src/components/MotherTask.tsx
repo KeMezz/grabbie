@@ -16,13 +16,14 @@ const MotherTask: React.FC<MotherTaskProps> = ({ title, todos }) => {
       <Droppable droppableId={title}>
         {(magic, snapshot) => (
           <div
-            className="flex flex-col gap-2"
+            className="flex flex-col"
             ref={magic.innerRef}
             {...magic.droppableProps}
           >
             {todos.map((todo, index) => (
               <ChildTask key={todo.id} index={index} {...todo} />
             ))}
+            {magic.placeholder}
           </div>
         )}
       </Droppable>

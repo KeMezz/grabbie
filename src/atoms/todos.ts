@@ -4,7 +4,7 @@ import { Todos } from "../types/todo.type";
 export const todosState = atom<Todos>({
   key: "todosState",
   default: {
-    Scheduled: [
+    Inbox: [
       {
         id: 1,
         text: "Grabbie!에 오신 것을 환영합니다!",
@@ -51,8 +51,8 @@ export const todosState = atom<Todos>({
         updatedAt: 1622425600000,
       },
     ],
-    Doing: [],
-    Done: [],
-    "On Hold": [],
+    Later: [],
+    Reference: [],
+    Delete: [],
   },
 });

@@ -1,12 +1,28 @@
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import MotherTask from "./components/MotherTask";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { todosState } from "./atoms/todos";
 
 function App() {
-  const todos = useRecoilValue(todosState);
+  const [todos, setTodos] = useRecoilState(todosState);
   const onDragEnd = (result: DropResult) => {
-    console.log(result);
+    if (!result.destination) return;
+
+    const draggedTodo = todos[result.source.droppableId].find(
+      (todo) => todo.id === +result.draggableId
+    );
+    setTodos((prevTodos) => {
+      const futureTodos = { ...prevTodos };
+      futureTodos[result.source.droppableId] = futureTodos[
+        result.source.droppableId
+      ].filter((todo) => todo.id !== +result.draggableId);
+      futureTodos[result.destination!.droppableId].splice(
+        result.destination!.index,
+        0,
+        draggedTodo!
+      );
+      return futureTodos;
+    });
   };
   return (
     <DragDropContext onDragEnd={onDragEnd}>

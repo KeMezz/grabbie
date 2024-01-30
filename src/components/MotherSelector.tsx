@@ -3,6 +3,8 @@ import React from "react";
 import SelectItem from "./SelectItem";
 import { Control, Controller } from "react-hook-form";
 import { CreateTodoForm } from "../types/form.type";
+import { useRecoilValue } from "recoil";
+import { todosState } from "../atoms/todos";
 
 interface MotherSelectorProps {
   control: Control<CreateTodoForm>;
@@ -13,6 +15,7 @@ const MotherSelector: React.FC<MotherSelectorProps> = ({
   control,
   defaultSection,
 }) => {
+  const todos = useRecoilValue(todosState);
   return (
     <Controller
       name="section"
@@ -61,10 +64,11 @@ const MotherSelector: React.FC<MotherSelectorProps> = ({
                 </svg>
               </Select.ScrollUpButton>
               <Select.Viewport className="p-[5px]">
-                <SelectItem value="Scheduled">Scheduled</SelectItem>
-                <SelectItem value="Doing">Doing</SelectItem>
-                <SelectItem value="Done">Done</SelectItem>
-                <SelectItem value="On Hold">On Hold</SelectItem>
+                {Object.keys(todos).map((section) => (
+                  <SelectItem key={section} value={section}>
+                    {section}
+                  </SelectItem>
+                ))}
               </Select.Viewport>
               <Select.ScrollDownButton className="flex items-center justify-center h-[25px] bg-white text-zinc-700 cursor-default">
                 <svg

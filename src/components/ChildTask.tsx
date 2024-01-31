@@ -1,6 +1,7 @@
 import React from "react";
 import dayjs from "dayjs";
 import { Draggable } from "react-beautiful-dnd";
+import classNames from "classnames";
 
 interface ChildTaskProps {
   id: number;
@@ -20,7 +21,10 @@ const ChildTask: React.FC<ChildTaskProps> = ({
     <Draggable draggableId={id + ""} index={index}>
       {(magic, snapshot) => (
         <div
-          className="p-3 rounded-lg bg-white shadow-sm flex flex-col mb-3 space-y-3"
+          className={classNames(
+            "p-3 rounded-lg bg-white shadow-sm flex flex-col mb-3 space-y-3",
+            snapshot.isDragging ? "ring-2 ring-zinc-800" : ""
+          )}
           ref={magic.innerRef}
           {...magic.dragHandleProps}
           {...magic.draggableProps}

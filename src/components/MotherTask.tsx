@@ -16,7 +16,7 @@ const MotherTask: React.FC<MotherTaskProps> = ({ title, todos }) => {
       <Droppable droppableId={title}>
         {(magic, snapshot) => (
           <div
-            className="flex flex-col"
+            className="flex flex-col min-h-8"
             ref={magic.innerRef}
             {...magic.droppableProps}
           >

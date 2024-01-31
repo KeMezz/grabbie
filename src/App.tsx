@@ -5,24 +5,33 @@ import { todosState } from "./atoms/todos";
 
 function App() {
   const [todos, setTodos] = useRecoilState(todosState);
-  const onDragEnd = (result: DropResult) => {
-    if (!result.destination) return;
+  const onDragEnd = ({ destination, source }: DropResult) => {
+    if (!destination) return;
 
-    const draggedTodo = todos[result.source.droppableId].find(
-      (todo) => todo.id === +result.draggableId
-    );
-    setTodos((prevTodos) => {
-      const futureTodos = { ...prevTodos };
-      futureTodos[result.source.droppableId] = futureTodos[
-        result.source.droppableId
-      ].filter((todo) => todo.id !== +result.draggableId);
-      futureTodos[result.destination!.droppableId].splice(
-        result.destination!.index,
-        0,
-        draggedTodo!
-      );
-      return futureTodos;
-    });
+    const draggedTodo = todos[source.droppableId][source.index];
+    if (source.droppableId === destination.droppableId) {
+      setTodos((prevTodos) => {
+        const destSection = [...prevTodos[source.droppableId]];
+        destSection.splice(source.index, 1);
+        destSection.splice(destination.index, 0, draggedTodo);
+        return {
+          ...prevTodos,
+          [source.droppableId]: destSection,
+        };
+      });
+    } else {
+      setTodos((prevTodos) => {
+        const sourceSection = [...prevTodos[source.droppableId]];
+        const destSection = [...prevTodos[destination.droppableId]];
+        sourceSection.splice(source.index, 1);
+        destSection.splice(destination.index, 0, draggedTodo);
+        return {
+          ...prevTodos,
+          [source.droppableId]: sourceSection,
+          [destination.droppableId]: destSection,
+        };
+      });
+    }
   };
   return (
     <DragDropContext onDragEnd={onDragEnd}>

@@ -18,6 +18,7 @@ const ChildTask: React.FC<ChildTaskProps> = ({
   index,
 }) => {
   return (
+    // TODO: Add a context menu to edit or delete the task
     <Draggable draggableId={id + ""} index={index}>
       {(magic, snapshot) => (
         <div

@@ -5,6 +5,8 @@ import { todosState } from "./atoms/todos";
 
 function App() {
   const [todos, setTodos] = useRecoilState(todosState);
+
+  // TODO: 로컬 스토리지 저장하는 기능 추가하기
   const onDragEnd = ({ destination, source }: DropResult) => {
     if (!destination) return;
 

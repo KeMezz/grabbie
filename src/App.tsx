@@ -27,11 +27,13 @@ function App() {
         const destSection = [...prevTodos[destination.droppableId]];
         sourceSection.splice(source.index, 1);
         destSection.splice(destination.index, 0, draggedTodo);
-        return {
+        const newTodos = {
           ...prevTodos,
           [source.droppableId]: sourceSection,
           [destination.droppableId]: destSection,
         };
+        localStorage.setItem("todos", JSON.stringify(newTodos));
+        return newTodos;
       });
     }
   };

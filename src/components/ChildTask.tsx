@@ -22,7 +22,6 @@ const ChildTask: React.FC<ChildTaskProps> = ({
 }) => {
   const todos = useRecoilValue(todosState);
   return (
-    // TODO: Add a context menu to edit or delete the task
     <Draggable draggableId={id + ""} index={index}>
       {(magic, snapshot) => (
         <div

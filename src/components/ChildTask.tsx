@@ -21,6 +21,9 @@ const ChildTask: React.FC<ChildTaskProps> = ({
   index,
 }) => {
   const todos = useRecoilValue(todosState);
+  const onCompleteClick = () => {
+    console.log(id);
+  };
   return (
     <Draggable draggableId={id + ""} index={index}>
       {(magic, snapshot) => (
@@ -42,7 +45,10 @@ const ChildTask: React.FC<ChildTaskProps> = ({
             </ContextMenu.Trigger>
             <ContextMenu.Portal>
               <ContextMenu.Content className="min-w-[220px] bg-white rounded-md overflow-hidden p-[5px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]">
-                <ContextMenu.Item className="group text-[13px] leading-none text-zinc-800 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-3 select-none outline-none data-[disabled]:text-gray-300 data-[disabled]:pointer-events-none data-[highlighted]:bg-zinc-800 data-[highlighted]:text-white">
+                <ContextMenu.Item
+                  onClick={onCompleteClick}
+                  className="group text-[13px] leading-none text-zinc-800 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-3 select-none outline-none data-[disabled]:text-gray-300 data-[disabled]:pointer-events-none data-[highlighted]:bg-zinc-800 data-[highlighted]:text-white"
+                >
                   <ContextMenu.ItemIndicator className="absolute left-0 w-[25px] inline-flex items-center justify-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

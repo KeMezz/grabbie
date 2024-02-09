@@ -27,7 +27,12 @@ const MotherTask: React.FC<MotherTaskProps> = ({ title, todos }) => {
             {...magic.droppableProps}
           >
             {todos.map((todo, index) => (
-              <ChildTask key={todo.id} index={index} {...todo} />
+              <ChildTask
+                key={todo.id}
+                index={index}
+                {...todo}
+                section={title}
+              />
             ))}
             {!todos.length && !snapshot.isDraggingOver ? (
               <div className="p-3 flex justify-center items-center text-gray-300">

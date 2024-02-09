@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import dayjs from "dayjs";
 import { Draggable } from "react-beautiful-dnd";
 import classNames from "classnames";
 import * as ContextMenu from "@radix-ui/react-context-menu";
 import { todosState } from "../atoms/todos";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 
 interface ChildTaskProps {
   id: number;
@@ -12,25 +12,40 @@ interface ChildTaskProps {
   isDone: boolean;
   createdAt: number;
   index: number;
+  section: string;
 }
 
 const ChildTask: React.FC<ChildTaskProps> = ({
   id,
   text,
+  isDone,
   createdAt,
   index,
+  section,
 }) => {
-  const todos = useRecoilValue(todosState);
+  const [todos, setTodos] = useRecoilState(todosState);
   const onCompleteClick = () => {
-    console.log(id);
+    if (isDone) return;
+    setTodos((prev) => {
+      const targetSection = [...prev[section]];
+      const newTodo = { ...targetSection[index], isDone: true };
+      targetSection.splice(index, 1, newTodo);
+      return { ...prev, targetSection };
+    });
   };
+
+  useEffect(() => {
+    console.log(todos);
+  }, [todos]);
+
   return (
     <Draggable draggableId={id + ""} index={index}>
       {(magic, snapshot) => (
         <div
           className={classNames(
-            "rounded-lg bg-white shadow-sm flex flex-col mb-3 space-y-3",
-            snapshot.isDragging ? "ring-2 ring-zinc-800" : ""
+            "rounded-lg shadow-sm flex flex-col mb-3 space-y-3",
+            snapshot.isDragging ? "ring-2 ring-zinc-800" : "",
+            isDone ? "bg-gray-400" : "bg-white"
           )}
           ref={magic.innerRef}
           {...magic.dragHandleProps}

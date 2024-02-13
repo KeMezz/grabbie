@@ -5,6 +5,7 @@ import classNames from "classnames";
 import * as ContextMenu from "@radix-ui/react-context-menu";
 import { todosState } from "../atoms/todos";
 import { useRecoilState } from "recoil";
+import * as Checkbox from "@radix-ui/react-checkbox";
 
 interface ChildTaskProps {
   id: number;
@@ -48,11 +49,38 @@ const ChildTask: React.FC<ChildTaskProps> = ({
           {...magic.draggableProps}
         >
           <ContextMenu.Root>
-            <ContextMenu.Trigger className="p-3">
-              <p>{text}</p>
-              <span className="text-xs text-gray-400 ml-auto">
+            <ContextMenu.Trigger>
+              <form>
+                <label htmlFor={id + ""} className="flex items-start p-3">
+                  <Checkbox.Root
+                    className="hover:bg-green2 flex h-5 w-5 appearance-none items-center justify-center rounded-md bg-gray-100 outline-none flex-shrink-0"
+                    id={id + ""}
+                  >
+                    <Checkbox.Indicator className="text-green11">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={3}
+                        stroke="currentColor"
+                        className="w-4 h-4"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="m4.5 12.75 6 6 9-13.5"
+                        />
+                      </svg>
+                    </Checkbox.Indicator>
+                  </Checkbox.Root>
+                  <p className="pl-3 text-sm leading-md text-zinc-800">
+                    {text}
+                  </p>
+                </label>
+              </form>
+              {/* <span className="text-xs text-gray-400 ml-auto">
                 {dayjs(createdAt).fromNow()}
-              </span>
+              </span> */}
             </ContextMenu.Trigger>
             <ContextMenu.Portal>
               <ContextMenu.Content className="min-w-[220px] bg-white rounded-md overflow-hidden p-[5px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]">

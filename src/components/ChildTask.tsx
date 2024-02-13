@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import dayjs from "dayjs";
 import { Draggable } from "react-beautiful-dnd";
 import classNames from "classnames";
@@ -25,18 +25,14 @@ const ChildTask: React.FC<ChildTaskProps> = ({
 }) => {
   const [todos, setTodos] = useRecoilState(todosState);
   const onCompleteClick = () => {
-    if (isDone) return;
-    setTodos((prev) => {
-      const targetSection = [...prev[section]];
-      const newTodo = { ...targetSection[index], isDone: true };
-      targetSection.splice(index, 1, newTodo);
-      return { ...prev, targetSection };
-    });
+    // if (isDone) return;
+    // setTodos((prev) => {
+    //   const targetSection = [...prev[section]];
+    //   const newTodo = { ...targetSection[index], isDone: true };
+    //   targetSection.splice(index, 1, newTodo);
+    //   return { ...prev, targetSection };
+    // });
   };
-
-  useEffect(() => {
-    console.log(todos);
-  }, [todos]);
 
   return (
     <Draggable draggableId={id + ""} index={index}>
